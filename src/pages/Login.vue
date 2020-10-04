@@ -30,4 +30,13 @@ export default {
 	box-shadow: 0 1px 2px rgba(0, 0, 0, .25);
 	transform: translate(-50%, -50%);
 }
+@media screen and (max-width: 650px){
+	.login-form {
+	  position: fixed;
+	  top: 40%;
+	  left: 50%;
+	  margin: 2em auto;
+	  width: 90%;
+	}
+}
 </style>
