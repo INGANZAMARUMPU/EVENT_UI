@@ -1,6 +1,6 @@
 <template>
     <a href="#" class="commands-btn btn-print" @click="generateTicket(client)">
-        Imprimer
+        <slot/>
     </a>
 </template>
 
@@ -14,7 +14,8 @@ export default {
     },
     methods: {
         generateTicket(client){
-            console.log(client);
+            var evenmt = this.$store.state.evenmt;
+            console.log(client, evenmt);
         }
     }
 };

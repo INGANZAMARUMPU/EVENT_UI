@@ -17,20 +17,14 @@ export default {
     components: {
         UserCard
     },
-    // computed: {
-    //     clients(){
-    //         return this.$store.state.clients
-    //     },
-    //     evenmt(){
-    //         return this.$store.state.evenmt
-    //     }
-    // },
-    data(){
-        return{
-            clients:this.$store.state.clients,
-            evenmt:this.$store.state.evenmt
+    computed: {
+        clients(){
+            return this.$store.getters.allClients
+        },
+        evenmt(){
+            return this.$store.getters.evenmt
         }
-    }
+    },
 };
 </script>
 
