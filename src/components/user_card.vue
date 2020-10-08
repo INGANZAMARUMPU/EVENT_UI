@@ -21,9 +21,7 @@
         <div class="user-info phone">{{ client.phone}}</div>
         <div class="user-info email">{{ client.user.email}}</div>
         <div class="user-info date">{{ client.date }}</div>
-        <a href="#" class="commands-btn btn-print" onclick="generateTicket(event,'{% static 'css/card.css' %}')">
-            Imprimer
-        </a>
+        <PrintButton :client="client">Imprimer</PrintButton>
         <a href="{% url 'editprofile' client.id %}" class="commands-btn">Modifier</a>
         <a href="{% url 'deleteprofile' client.id %}" class="commands-btn">Supprimer</a>
     </div>
@@ -31,6 +29,7 @@
 </template>
 
 <script>
+import PrintButton from "./print_button"
 export default {
     props:{
         client:{
@@ -41,6 +40,9 @@ export default {
             type:Object,
             required: true
         }
+    },
+    components: {
+        PrintButton
     }
 };
 </script>
