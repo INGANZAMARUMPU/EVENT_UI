@@ -6,7 +6,8 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
 	state:{
         clients:[],
-        evenmt:null
+        evenmt:null,
+        action:0 //0:default, 1:edition, 2:deletion
     },
 	mutations: {},
 	actions: {},
@@ -16,6 +17,9 @@ export const store = new Vuex.Store({
         },
         evenmt(state){
             return state.evenmt;
+        },
+        action(state){
+            return state.action;
         }
     }
 })

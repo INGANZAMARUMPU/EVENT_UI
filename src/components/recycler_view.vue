@@ -6,7 +6,7 @@
         <input type="text" placeholder="recherche..." style="float:right; height:2em">
     </div>
     <div class="recycler">
-        <UserCard v-for="client in clients" :client="client" :evenmt="evenmt"/>
+        <UserCard v-for="client in clients" :client="client" :evenmt="evenmt" v-on="$listeners"/>
     </div>
 </div>
 </template>
@@ -17,14 +17,16 @@ export default {
     components: {
         UserCard
     },
-    computed: {
-        clients(){
-            return this.$store.getters.allClients
+    props:{
+        clients:{
+            type : Array,
+            default : [],
         },
-        evenmt(){
-            return this.$store.getters.evenmt
+        evenmt:{
+            type: Object,
+            default: {}
         }
-    },
+    }
 };
 </script>
 

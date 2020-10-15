@@ -22,8 +22,8 @@
         <div class="user-info email">{{ client.user.email}}</div>
         <div class="user-info date">{{ client.date }}</div>
         <PrintButton :client="client">Imprimer</PrintButton>
-        <a href="{% url 'editprofile' client.id %}" class="commands-btn">Modifier</a>
-        <a href="{% url 'deleteprofile' client.id %}" class="commands-btn">Supprimer</a>
+        <a @click="emitEdit" class="commands-btn">Modifier</a>
+        <a @click="emitDelete" class="commands-btn">Supprimer</a>
     </div>
 </div>
 </template>
@@ -43,6 +43,14 @@ export default {
     },
     components: {
         PrintButton
+    },
+    methods: { 
+        emitEdit(){
+            this.$emit('modifier', this.client); 
+        },
+        emitDelete(){
+            this.$emit('suppr', this.client); 
+        }
     }
 };
 </script>

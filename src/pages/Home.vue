@@ -2,7 +2,7 @@
 	<div class="container">
   		<Topbar/>
   		<Register/>
-  		<Recycler/>
+  		<Recycler :clients="clients" :evnmt="evnmt" @modifier="modifier" @suppr="supprimer"/>
   	</div>
 </template>
 
@@ -17,10 +17,17 @@ export default {
 		Register,
 		Recycler
 	},
+	data(){
+		return{
+			clients:[],
+			evenmt:{}
+		}
+	},
 	mounted(){
 		axios.get('http://127.0.0.1:8000/api/profile/'
 		).then((response) => {
-			this.$store.state.clients = response.data;
+			this.clients = response.data;
+			this.$store.state.clients = this.clients;
 		}).catch((error) => {
 		  console.error(error);
 		}).finally(() => {
@@ -28,11 +35,20 @@ export default {
 
 		axios.get('http://127.0.0.1:8000/api/event/'
 		).then((response) => {
-			this.$store.state.evenmt = response.data[0];
+			this.evenmt = response.data[0];
+			this.$store.state.evenmt = this.evenmt
 		}).catch((error) => {
 		  console.error(error);
 		}).finally(() => {
 		});
+	},
+	methods:{
+		modifier(client){
+			console.log(client);
+		},
+		supprimer(client){
+			console.log(client);
+		}
 	}
 };
 </script>
