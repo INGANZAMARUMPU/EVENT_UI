@@ -22,7 +22,7 @@ export default {
 			clients:[],
 			tickets:[],
 			evenmt:{},
-			client:{},
+			client:{"user":{},"ticket":{}},
 			method:""// edit, delete
 		}
 	},

@@ -6,7 +6,7 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
 	state:{
         clients:[],
-        evenmt:null,
+        evenmt:{},
         tickets:[] //0:default, 1:edition, 2:deletion
     },
 	mutations: {},

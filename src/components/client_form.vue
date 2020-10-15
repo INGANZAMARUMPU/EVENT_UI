@@ -46,8 +46,8 @@
 	        </div>
 	        <div style="display: flow-root;">
 	            <div style="float:right;">
-	                <button type="reset">reset</button>
-	                <button type="submit" submit="">envoyer</button>
+	                <button type="reset" @click="method=''">reset</button>
+	                <button type="submit" submit="">{{ getSubmitTxt }}</button>
 	            </div>
 	        </div>
 	    </form>
@@ -69,6 +69,18 @@ export default {
 			type : Array,
 			default : []
 		} 
+	},
+	watch: {
+		method : function (val){
+			if(val == ""){
+				this.client = {"user":{},"ticket":{}};
+			}
+		}
+	},
+	computed: {
+		getSubmitTxt(){
+			return this.method == "" ? "Submit": this.method;
+		}
 	}
 };
 </script>
