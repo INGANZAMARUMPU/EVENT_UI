@@ -1,26 +1,29 @@
 <template>
 	<div class="container">
   		<Topbar/>
-  		<Register/>
-  		<Recycler :clients="clients" :evnmt="evnmt" @modifier="modifier" @suppr="supprimer"/>
+  		<ClientForm :client="client" :method="method" :tickets="tickets"/>
+  		<Recycler :clients="clients" :evenmt="evenmt" @modifier="modifier" @suppr="supprimer"/>
   	</div>
 </template>
 
 <script>
 import Topbar from "../components/Topbar";
-import Register from "../components/Register";
+import ClientForm from "../components/client_form";
 import Recycler from "../components/recycler_view";
 import axios from "axios";
 export default {
 	components: {
 		Topbar,
-		Register,
+		ClientForm,
 		Recycler
 	},
 	data(){
 		return{
 			clients:[],
-			evenmt:{}
+			tickets:[],
+			evenmt:{},
+			client:{},
+			method:""// edit, delete
 		}
 	},
 	mounted(){
@@ -41,12 +44,25 @@ export default {
 		  console.error(error);
 		}).finally(() => {
 		});
+
+		axios.get('http://127.0.0.1:8000/api/ticket/'
+		).then((response) => {
+			this.tickets = response.data;
+			this.$store.state.tickets = this.tickets
+		}).catch((error) => {
+		  console.error(error);
+		}).finally(() => {
+		});
 	},
 	methods:{
 		modifier(client){
-			console.log(client);
+			this.method = "edit";
+			this.client=client;
+			console.log(client)
 		},
 		supprimer(client){
+			this.method = "delete";
+			this.client=client;
 			console.log(client);
 		}
 	}

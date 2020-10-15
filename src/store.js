@@ -7,18 +7,18 @@ export const store = new Vuex.Store({
 	state:{
         clients:[],
         evenmt:null,
-        action:0 //0:default, 1:edition, 2:deletion
+        tickets:[] //0:default, 1:edition, 2:deletion
     },
 	mutations: {},
 	actions: {},
 	getters:{
-        allClients(state){
+        clients(state){
             return state.clients;
         },
         evenmt(state){
             return state.evenmt;
         },
-        action(state){
+        tickets(state){
             return state.action;
         }
     }
