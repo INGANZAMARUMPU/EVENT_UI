@@ -1,10 +1,12 @@
 <template>
-    <a href="#" class="commands-btn btn-print" @click="generateTicket(client)">
+    <a href="#" class="commands-btn btn-print" @click="generateTicket()">
         <slot/>
     </a>
 </template>
 
 <script>
+import qrjs2 from 'qrjs2';
+import {templateHead, templateBody, templateFoot, printTicket} from "./print_functions";
 export default {
     props:{
         client:{
@@ -13,9 +15,8 @@ export default {
         }
     },
     methods: {
-        generateTicket(client){
-            var evenmt = this.$store.state.evenmt;
-            console.log(client, evenmt);
+        generateTicket(){
+            printTicket(templateBody(this.client, this.$store.getters.evenmt));
         }
     }
 };
